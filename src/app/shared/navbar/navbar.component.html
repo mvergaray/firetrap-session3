@@ -1,0 +1,131 @@
+<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent"
+     color-on-scroll="500">
+    <div class="container">
+        <!-- <div class="dropdown button-dropdown">
+            <div ngbDropdown>
+                <a class="dropdown-toggle"
+                   ngbDropdownToggle>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                </a>
+                <div ngbDropdownMenu>
+                    <a class="dropdown-header">Dropdown header</a>
+                    <a class="dropdown-item"
+                       href="#">Action</a>
+                    <a class="dropdown-item"
+                       href="#">Another action</a>
+                    <a class="dropdown-item"
+                       href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"
+                       href="#">Separated link</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"
+                       href="#">One more separated link</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="navbar-translate">
+            <a class="navbar-brand"
+               [routerLink]="['/profile']"
+               placement="bottom"
+               ngbTooltip="Cómo usar RealTime DB">
+                Firetrix - Session 3
+            </a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarToggler"
+                    aria-controls="navbarTogglerDemo02"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    (click)="sidebarToggle()">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse"
+             data-nav-image="assets/img/blurred-image-1.jpg"
+             data-color="orange">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-primary"
+                            (click)="open(classic)">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>Indicaciones</p>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary"
+                            (click)="signOut()">
+                        <p>Salir</p>
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       rel="tooltip"
+                       title=""
+                       data-placement="bottom"
+                       href="https://twitter.com/BelatrixSF"
+                       target="_blank"
+                       data-original-title="Follow us on Twitter">
+                        <i class="fa fa-twitter"></i>
+                        <p class="d-lg-none d-xl-none">Twitter</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       rel="tooltip"
+                       title=""
+                       data-placement="bottom"
+                       href="https://es-la.facebook.com/BelatrixSoftware/"
+                       target="_blank"
+                       data-original-title="Like us on Facebook">
+                        <i class="fa fa-facebook-square"></i>
+                        <p class="d-lg-none d-xl-none">Facebook</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       rel="tooltip"
+                       title=""
+                       data-placement="bottom"
+                       href="https://www.instagram.com/belatrix.software/"
+                       target="_blank"
+                       data-original-title="Follow us on Instagram">
+                        <i class="fa fa-instagram"></i>
+                        <p class="d-lg-none d-xl-none">Instagram</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<ng-template #classic
+             let-c="close"
+             let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title text-center">Página de presentación</h5>
+        <button type="button"
+                class="close"
+                (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Para el siguiente ejericio se deberá usar la nuestra base de datos en firebase para rellenar la información.
+    </div>
+    <div class="modal-footer">
+        <div class="left-side">
+            <button type="button"
+                    class="btn btn-default btn-link"
+                    (click)="c('Close click')">Okay</button>
+        </div>
+
+    </div>
+</ng-template>
