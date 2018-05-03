@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { RealTimeDatabaseService } from '../../core/real-time-database.service';
+import { IUser } from 'app/core/IUser';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../core/auth.service';
 import * as Rellax from 'rellax';
 
 @Component({
@@ -15,15 +20,20 @@ export class ProfileComponent implements OnInit {
   focus;
   focus1;
 
-  constructor () { }
+  user: Observable<IUser | null>;
+
+  constructor (public auth: AuthService) {
+    this.user = auth.user;
+  }
 
   ngOnInit() {
-    var rellaxHeader = new Rellax('.rellax-header');
-
-    var body = document.getElementsByTagName('body')[0];
-    body.classList.add('profile-page');
-    var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+    this.user.toPromise().then(_ => {
+      var rellaxHeader = new Rellax('.rellax-header');
+      var body = document.getElementsByTagName('body')[0];
+      body.classList.add('profile-page');
+      var navbar = document.getElementsByTagName('nav')[0];
+      navbar.classList.add('navbar-transparent');
+    });
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];

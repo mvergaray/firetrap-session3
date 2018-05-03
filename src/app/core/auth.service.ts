@@ -7,18 +7,12 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
-
-interface User {
-  uid: string;
-  email?: string | null;
-  photoURL?: string;
-  displayName?: string;
-}
+import { IUser } from './IUser';
 
 @Injectable()
 export class AuthService {
 
-  user: Observable<User | null>;
+  user: Observable<IUser | null>;
 
   constructor (private afAuth: AngularFireAuth,
     private rtdb: AngularFireDatabase,
@@ -94,15 +88,16 @@ export class AuthService {
   }
 
   // Sets user data to firestore after succesful login
-  private updateUserData(user: User) {
+  private updateUserData(user: IUser) {
 
-    const userRef: AngularFireObject<User> = this.rtdb.object(`users/${user.uid}`);
+    const userRef: AngularFireObject<IUser> = this.rtdb.object(`users/${user.uid}`);
 
-    const data: User = {
+    const data: IUser = {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName || 'no tengo nombre :(',
       photoURL: user.photoURL || 'https://orig00.deviantart.net/a866/f/2008/233/8/e/v_for_vendetta_by_vendetta666.jpg',
+      anticucho: true
     };
     return userRef.set(data);
   }
