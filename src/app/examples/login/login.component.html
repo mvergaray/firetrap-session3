@@ -30,6 +30,25 @@
                                 type="button">
                             <i class="fa fa-twitter"></i>
                         </button>
+                        <button class="btn btn-neutral btn-twitter btn-icon btn-round btn-lg"
+                                type="button"
+                                (click)="showLoginForm = !showLoginForm">
+                            <i class="fa fa-envelope"></i>
+                        </button>
+
+                        <div *ngIf="showLoginForm">
+                            <input type="text"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Email"
+                                   [(ngModel)]="email">
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="password"
+                                   [(ngModel)]="password">
+                            <button class="form-control" (click)="signUpWithEmail()">Ingresar</button>
+                        </div>
                     </div>
                 </form>
             </div>

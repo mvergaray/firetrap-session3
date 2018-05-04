@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyDYla7zt9uCSEoU8e6nDrOGR4GrCLvTiL8",
-    authDomain: "firetrix-session2.firebaseapp.com",
-    databaseURL: "https://firetrix-session2.firebaseio.com",
-    projectId: "firetrix-session2",
-    storageBucket: "firetrix-session2.appspot.com",
-    messagingSenderId: "790097029452"
+    apiKey: "AIzaSyChnogJB6RuIMg6hqn0cNEfpf5HTg4oM6c",
+    authDomain: "angularfirebase-ca3dc.firebaseapp.com",
+    databaseURL: "https://angularfirebase-ca3dc.firebaseio.com",
+    projectId: "angularfirebase-ca3dc",
+    storageBucket: "",
+    messagingSenderId: "892665709586"
   }
 };

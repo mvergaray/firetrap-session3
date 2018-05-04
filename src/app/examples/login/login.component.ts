@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
     data: Date = new Date();
     focus;
     focus1;
+    showloginForm = false;
+    email;
+    password;
 
     constructor (private authService: AuthService, private router: Router) { }
 
@@ -35,6 +38,9 @@ export class LoginComponent implements OnInit {
     signUpWithGoogle() {
         this.signUp('google');
     }
+    signUpWithEmail() {
+        this.signUp('email');
+    }
     signUp(method: string) {
         let signInPromise: Promise<void>;
         switch (method) {
@@ -47,11 +53,15 @@ export class LoginComponent implements OnInit {
             case 'twitter':
                 signInPromise = this.authService.twitterLogin();
                 break;
+            case 'email':
+                signInPromise = this.authService.emailLogin(this.email, this.password);
+                break;
             default:
                 break;
         }
         signInPromise.then(_ => this.successfullSignInCallback());
     }
+
     private successfullSignInCallback() {
         this.router.navigate(['/profile']);
     }
