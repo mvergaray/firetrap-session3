@@ -8,11 +8,20 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
 
-interface User {
+import { DatabaseService } from './database.service';
+
+export interface User {
   uid: string;
   email?: string | null;
   photoURL?: string;
   displayName?: string;
+  role?: string;
+  description?: string;
+  linkedin?: string;
+  instagram?: string;
+  followers?: number;
+  following?: number;
+  posts?: number;
 }
 
 @Injectable()
@@ -21,13 +30,13 @@ export class AuthService {
   user: Observable<User | null>;
 
   constructor (private afAuth: AngularFireAuth,
-    private rtdb: AngularFireDatabase,
+    private rtdb: DatabaseService,
     private router: Router) {
 
     this.user = this.afAuth.authState
       .switchMap((user) => {
         if (user) {
-          return this.rtdb.object(`users/${user.uid}`).valueChanges();
+          return this.rtdb.getObject(`users/${user.uid}`);
         } else {
           return Observable.of(null);
         }
@@ -105,14 +114,18 @@ export class AuthService {
   // Sets user data to firestore after succesful login
   private updateUserData(user: User) {
 
-    const userRef: AngularFireObject<User> = this.rtdb.object(`users/${user.uid}`);
+    //const userRef: AngularFireObject<User> = this.rtdb.object(`users/${user.uid}`);
 
     const data: User = {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName || 'no tengo nombre :(',
-      photoURL: user.photoURL || 'https://orig00.deviantart.net/a866/f/2008/233/8/e/v_for_vendetta_by_vendetta666.jpg',
+      description: 'UPC. 25 años',
+      linkedin: 'https://www.linkedin.com/in/marco-vergaray-7a012893/',
+      instagram: 'https://www.instagram.com/macoy25a/',
+      role: 'UI Developer',
+      photoURL: user.photoURL || 'https://instagram.flim17-1.fna.fbcdn.net/vp/f5fe258dd0682202b0118247d959b132/5B9CB81B/t51.2885-19/s150x150/31128532_387011181781314_8681984064799899648_n.jpg',
     };
-    return userRef.set(data);
+    return this.rtdb.setObject(`users/${user.uid}`, data);//userRef.set(data);
   }
 }

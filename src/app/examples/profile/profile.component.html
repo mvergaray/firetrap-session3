@@ -5,53 +5,54 @@
              data-rellax-speed="-8"
              style="background-image: url('assets/img/bg5.jpg') ;">
         </div>
-        <div class="container">
+        <div class="container" *ngIf="userDetails">
             <div class="content-center">
                 <div class="photo-container">
-                    <img src="assets/img/ryan.jpg"
+                    <img [src]="userDetails.photoURL || img/ryan.jpg"
                          alt="">
                 </div>
-                <h3 class="title">Ryan Scheinder</h3>
-                <p class="category">Photographer</p>
+                <h3 class="title">{{userDetails.displayName}}</h3>
+                <p class="category">{{userDetails.role}}</p>
                 <div class="content">
                     <div class="social-description">
-                        <h2>26</h2>
-                        <p>Comments</p>
+                        <h2>{{headerData.followers}}</h2>
+                        <p>Followers</p>
                     </div>
                     <div class="social-description">
-                        <h2>26</h2>
-                        <p>Comments</p>
+                        <h2>{{headerData.following}}</h2>
+                        <p>Following</p>
                     </div>
                     <div class="social-description">
-                        <h2>48</h2>
-                        <p>Bookmarks</p>
+                        <h2>{{headerData.posts}}</h2>
+                        <p>Posts</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="section">
+    <div class="section" *ngIf="userDetails">
         <div class="container">
             <div class="button-container">
-                <a href="#button"
-                   class="btn btn-primary btn-round btn-lg">Follow</a>
-                <a href="#button"
+                <a href="#"
+                   class="btn btn-primary btn-round btn-lg"
+                   (click)="updateNumbers()">Follow</a>
+                <a [href]="userDetails.linkedin"
                    class="btn btn-default btn-round btn-lg btn-icon"
                    rel="tooltip"
-                   title="Follow me on Twitter">
-                    <i class="fa fa-twitter"></i>
+                   title="Follow me on Linked In"
+                   target="_blank">
+                    <i class="fa fa-linkedin"></i>
                 </a>
-                <a href="#button"
+                <a [href]="userDetails.instagram"
                    class="btn btn-default btn-round btn-lg btn-icon"
                    rel="tooltip"
-                   title="Follow me on Instagram">
+                   title="Follow me on Instagram"
+                   target="_blank">
                     <i class="fa fa-instagram"></i>
                 </a>
             </div>
             <h3 class="title">About me</h3>
-            <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure.
-                An artist of considerable range.</h5>
+            <h5 class="description">{{userDetails.description}}</h5>
         </div>
     </div>
     <footer class="footer footer-default">
